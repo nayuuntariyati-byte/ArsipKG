@@ -118,7 +118,7 @@ ArsipKG/
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/ArsipKG.git
+git clone https://github.com/nayuuntariyati-byte/ArsipKG.git
 cd ArsipKG
 pip install -r code/requirements.txt
 ```
