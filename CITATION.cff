@@ -1,0 +1,74 @@
+cff-version: 1.2.0
+title: "ArsipKG: Indonesian Government Regulatory Archives Knowledge Graph"
+message: "If you use this dataset, please cite the accompanying paper and this Zenodo deposit."
+type: dataset
+version: 1.0.0
+date-released: 2026-06-05
+doi: 10.5281/zenodo.XXXXXXX
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
+url: "https://github.com/YOUR-USERNAME/ArsipKG"
+repository-code: "https://github.com/YOUR-USERNAME/ArsipKG"
+repository-artifact: "https://zenodo.org/record/XXXXXXX"
+
+authors:
+  - family-names: Untariyati
+    given-names: Nimas Ayu
+    orcid: "https://orcid.org/0009-0001-6466-9534"
+    affiliation: "Universitas Diponegoro & BRIN"
+    email: "nayuuntariyati@students.undip.ac.id"
+  - family-names: Adi
+    given-names: Kusworo
+    orcid: "https://orcid.org/0000-0002-7702-6554"
+    affiliation: "Universitas Diponegoro"
+  - family-names: Widodo
+    given-names: Aris Puji
+    orcid: "https://orcid.org/0000-0003-4904-5034"
+    affiliation: "Universitas Diponegoro"
+  - family-names: Uliniansyah
+    given-names: M. Teduh
+    orcid: "https://orcid.org/0000-0002-5224-3704"
+    affiliation: "BRIN"
+
+keywords:
+  - knowledge graph construction
+  - few-shot learning
+  - large language models
+  - Indonesian NLP
+  - regulatory text mining
+  - low-resource information extraction
+  - LLaMA
+  - ontology
+
+preferred-citation:
+  type: article
+  title: "LLM-Driven Few-Shot Classification and Knowledge Graph Population from Indonesian Government Regulatory Archives"
+  authors:
+    - family-names: Untariyati
+      given-names: Nimas Ayu
+      orcid: "https://orcid.org/0009-0001-6466-9534"
+    - family-names: Adi
+      given-names: Kusworo
+    - family-names: Widodo
+      given-names: Aris Puji
+    - family-names: Uliniansyah
+      given-names: M. Teduh
+  journal: "International Journal of Data Science and Analytics"
+  publisher:
+    name: Springer
+  year: 2026
+  doi: PAPER-DOI-PLACEHOLDER
+
+abstract: >
+  ArsipKG is a comprehensive package supporting research on automated knowledge
+  graph (KG) population from Indonesian government regulatory archives. It
+  includes: (1) ArsipDataset, a curated corpus of 614 archival regulations
+  from 133 institutions spanning 1961-2025; (2) ArsipOnto, a formal OWL 2 DL
+  ontology aligned with LKIF, Dublin Core Terms, SKOS, and FOAF; (3)
+  ArsipKG-Auto, a populated knowledge graph with 1,211 individuals and 1,911
+  axioms; (4) ArsipQA-v1, a benchmark of 90 question-answer pairs across 7
+  question types; (5) a validation dataset of 26 stratified documents
+  independently annotated by two domain experts (Cohen's kappa = 0.9504); and
+  (6) the complete experimental pipeline implementation, including supervised
+  baselines (Rule-based, TF-IDF+SVM, IndoBERT fine-tuning) and the four-stage
+  LLM-driven pipeline.

@@ -1,0 +1,37 @@
+{
+  "framing": "BERTScore as primary metric (semantic similarity)",
+  "rationale": "Token F1 penalized by format mismatch (technical IDs vs natural language). BERTScore captures semantic correctness.",
+  "table6_opsi_a": {
+    "No KG (LLM only)": {
+      "BERTScore": 0.6193,
+      "ROUGE-L": 0.0664,
+      "Token_F1": 0.0313
+    },
+    "Semi-manual KG": {
+      "BERTScore": 0.641,
+      "ROUGE-L": 0.047,
+      "Token_F1": 0.0
+    },
+    "ArsipKG-Auto Full": {
+      "BERTScore": 0.661,
+      "ROUGE-L": 0.0906,
+      "Token_F1": 0.0227
+    }
+  },
+  "qa_retention_bertscore_pct": 103.1,
+  "auto_improvement_over_nokg_pct": 6.73,
+  "wilcoxon": {
+    "auto_vs_semi": {
+      "p_value": 0.026857,
+      "significant": "True"
+    },
+    "auto_vs_no_kg": {
+      "p_value": 0.566217,
+      "significant": "False"
+    },
+    "semi_vs_no_kg": {
+      "p_value": 0.000194,
+      "significant": "True"
+    }
+  }
+}

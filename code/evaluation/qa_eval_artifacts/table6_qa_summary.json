@@ -1,0 +1,53 @@
+{
+  "benchmark": {
+    "name": "ArsipQA-v1",
+    "n_questions": 90,
+    "question_types": {
+      "menerbitkan": 20,
+      "berlakuPada": 15,
+      "mengatur": 15,
+      "ditetapkanOleh": 10,
+      "menggantikan": 10,
+      "menggantikan_sebagian": 10,
+      "multi_hop": 10
+    },
+    "generation_seed": 42
+  },
+  "table6": {
+    "No KG (LLM only)": {
+      "f1": 0.0313,
+      "rouge_l": 0.0664,
+      "bert_score": 0.6193,
+      "n_questions": 90
+    },
+    "Semi-manual KG": {
+      "f1": 0.0,
+      "rouge_l": 0.047,
+      "bert_score": 0.641,
+      "n_questions": 90
+    },
+    "ArsipKG-Auto Full": {
+      "f1": 0.0227,
+      "rouge_l": 0.0906,
+      "bert_score": 0.661,
+      "n_questions": 90
+    }
+  },
+  "wilcoxon_tests": {
+    "auto_vs_semi": {
+      "p_value": 0.026857,
+      "significant": "True"
+    },
+    "auto_vs_no_kg": {
+      "p_value": 0.566217,
+      "significant": "False"
+    },
+    "semi_vs_no_kg": {
+      "p_value": 0.000194,
+      "significant": "True"
+    }
+  },
+  "qa_retention_pct": null,
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "timestamp": "2026-05-24T05:36:05.948777"
+}

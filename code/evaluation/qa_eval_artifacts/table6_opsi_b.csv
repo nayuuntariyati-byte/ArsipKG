@@ -1,0 +1,4 @@
+KG_Backend,F1,ROUGE_L,BERTScore,Delta_F1_vs_Semi
+No KG (LLM only),0.0401,0.0728,0.6228,0.0375
+Semi-manual KG,0.0026,0.0412,0.6368,0.0
+ArsipKG-Auto Full,0.026,0.0828,0.6545,0.0234

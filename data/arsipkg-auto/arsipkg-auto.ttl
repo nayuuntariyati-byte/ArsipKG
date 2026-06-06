@@ -1,0 +1,17 @@
+# === PLACEHOLDER: Replace with output of code/pipeline/stage4_kg_population.py ===
+# === This file should contain 1,911 axioms over 1,211 individuals ===
+# === Format: W3C Turtle (RDF 1.1) ===
+
+@prefix arsip: <https://w3id.org/arsipkg/ontology/v1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Example individual (illustrative only)
+arsip:PER-EXAMPLE-001 a arsip:Peraturan ;
+    arsip:nomorPeraturan "12/2020" ;
+    arsip:tentang "Jadwal Retensi Arsip Substantif" ;
+    arsip:tahunDitetapkan "2020"^^xsd:gYear ;
+    arsip:diterbitkanOleh arsip:LEMBAGA-KEMENKES ;
+    arsip:mengatur arsip:JRA ;
+    arsip:berlakuPada arsip:DATE-2020-04-01 .

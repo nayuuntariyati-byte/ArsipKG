@@ -1,0 +1,350 @@
+@prefix : <https://w3id.org/arsipkg/ontology/v1#> .
+@prefix arsip: <https://w3id.org/arsipkg/ontology/v1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix lkif: <http://www.estrellaproject.org/lkif-core/lkif-core.owl#> .
+@prefix lkif-norm: <http://www.estrellaproject.org/lkif-core/norm.owl#> .
+@prefix lkif-time: <http://www.estrellaproject.org/lkif-core/time.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# =============================================================================
+# ONTOLOGY HEADER
+# =============================================================================
+<https://w3id.org/arsipkg/ontology/v1> a owl:Ontology ;
+    dc:title "ArsipOnto: An Ontology for Indonesian Regulatory Archives"@en ,
+             "ArsipOnto: Ontologi untuk Arsip Regulasi Pemerintah Indonesia"@id ;
+    dc:creator "Nimas Ayu Untariyati" ,
+               "Kusworo Adi" ,
+               "Aris Puji Widodo" ,
+               "M. Teduh Uliniansyah" ;
+    dc:date "2026-06-01"^^xsd:date ;
+    dc:description """ArsipOnto is a domain ontology for representing Indonesian
+        government regulatory archives. It models the core entities (Peraturan,
+        Lembaga, Pejabat, Tanggal, Kategori) and their relations, with explicit
+        alignment to the Legal Knowledge Interchange Format (LKIF) and
+        Dublin Core Terms. The ontology supports the ArsipKG-Auto knowledge
+        graph (1,211 individuals, 1,911 axioms) populated from the ArsipDataset
+        corpus (614 regulations spanning 1961-2025)."""@en ;
+    dc:rights "Creative Commons Attribution 4.0 International (CC BY 4.0)" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:bibliographicCitation """Untariyati, N.A., Adi, K., Widodo, A.P., Uliniansyah, M.T. (2026)
+        LLM-Driven Few-Shot Classification and Knowledge Graph Population from
+        Indonesian Government Regulatory Archives. International Journal of
+        Data Science and Analytics.""" ;
+    dcterms:source <https://peraturan.go.id> ;
+    owl:versionInfo "1.0.0" ;
+    owl:versionIRI <https://w3id.org/arsipkg/ontology/v1.0.0> ;
+    rdfs:comment """This ontology aligns with:
+        - LKIF (Legal Knowledge Interchange Format) for legal document modeling
+        - Dublin Core Terms for metadata interoperability
+        - FOAF for agent representation
+        - SKOS for taxonomy categorization"""@en ;
+    rdfs:seeAlso <http://www.estrellaproject.org/lkif-core/> ,
+                 <http://purl.org/dc/terms/> .
+
+# =============================================================================
+# CLASS DECLARATIONS (5 main classes + subtypes)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# arsip:Peraturan (Regulation) - Core entity
+# -----------------------------------------------------------------------------
+arsip:Peraturan a owl:Class ;
+    rdfs:label "Peraturan"@id , "Regulation"@en ;
+    rdfs:comment """A formal government regulatory document issued by an
+        Indonesian government institution. Represents the core entity in
+        ArsipKG, aligned with LKIF Legal_Document."""@en ;
+    rdfs:subClassOf lkif-norm:Legal_Document ;
+    skos:exactMatch lkif-norm:Legal_Document ;
+    dcterms:hasVersion "1.0" .
+
+arsip:PeraturanAktif a owl:Class ;
+    rdfs:label "Peraturan Aktif"@id , "Active Regulation"@en ;
+    rdfs:comment "A regulation currently in force (status = aktif)."@en ;
+    rdfs:subClassOf arsip:Peraturan .
+
+arsip:PeraturanDicabut a owl:Class ;
+    rdfs:label "Peraturan Dicabut"@id , "Superseded Regulation"@en ;
+    rdfs:comment "A regulation that has been fully revoked or replaced (status = dicabut)."@en ;
+    rdfs:subClassOf arsip:Peraturan ;
+    owl:disjointWith arsip:PeraturanAktif .
+
+# -----------------------------------------------------------------------------
+# arsip:Lembaga (Institution) - Linked entity
+# -----------------------------------------------------------------------------
+arsip:Lembaga a owl:Class ;
+    rdfs:label "Lembaga"@id , "Institution"@en ;
+    rdfs:comment """A government institution issuing regulations. Aligned with
+        LKIF Legal_Person and FOAF Organization."""@en ;
+    rdfs:subClassOf lkif:Legal_Person , foaf:Organization ;
+    skos:closeMatch foaf:Organization .
+
+arsip:Kementerian a owl:Class ;
+    rdfs:label "Kementerian"@id , "Ministry"@en ;
+    rdfs:comment "A government ministry (e.g., Kementerian Kesehatan)."@en ;
+    rdfs:subClassOf arsip:Lembaga .
+
+arsip:LPNK a owl:Class ;
+    rdfs:label "Lembaga Pemerintah Non-Kementerian"@id , "Non-Ministerial Government Agency"@en ;
+    rdfs:comment "A government agency that is not a ministry (e.g., BRIN, LIPI)."@en ;
+    rdfs:subClassOf arsip:Lembaga .
+
+arsip:ANRI a owl:Class ;
+    rdfs:label "Arsip Nasional Republik Indonesia"@id , "National Archives of Indonesia"@en ;
+    rdfs:comment "The National Archives of the Republic of Indonesia, the principal authority for archival regulations."@en ;
+    rdfs:subClassOf arsip:LPNK .
+
+# -----------------------------------------------------------------------------
+# arsip:Pejabat (Official) - Attribute entity
+# -----------------------------------------------------------------------------
+arsip:Pejabat a owl:Class ;
+    rdfs:label "Pejabat"@id , "Government Official"@en ;
+    rdfs:comment """A government official who enacts or revokes regulations.
+        Aligned with LKIF Natural_Person and FOAF Person."""@en ;
+    rdfs:subClassOf lkif:Natural_Person , foaf:Person ;
+    skos:closeMatch foaf:Person .
+
+# -----------------------------------------------------------------------------
+# arsip:Tanggal (Date) - Attribute entity
+# -----------------------------------------------------------------------------
+arsip:Tanggal a owl:Class ;
+    rdfs:label "Tanggal"@id , "Date"@en ;
+    rdfs:comment """A calendar date associated with regulation enactment or
+        effective period. Aligned with LKIF Time_Point."""@en ;
+    rdfs:subClassOf lkif-time:Time_Point .
+
+# -----------------------------------------------------------------------------
+# arsip:Kategori (Category) - Taxonomy entity
+# -----------------------------------------------------------------------------
+arsip:Kategori a owl:Class ;
+    rdfs:label "Kategori"@id , "Taxonomy Category"@en ;
+    rdfs:comment """A taxonomy category in the six-class ArsipDataset
+        classification scheme. Aligned with SKOS Concept."""@en ;
+    rdfs:subClassOf skos:Concept .
+
+arsip:KA a owl:Class ;
+    rdfs:label "Klasifikasi Arsip"@id , "Archival Classification"@en ;
+    rdfs:comment "Regulations establishing classification schemes for archival content."@en ;
+    rdfs:subClassOf arsip:Kategori .
+
+arsip:JRA a owl:Class ;
+    rdfs:label "Jadwal Retensi Arsip"@id , "Archival Retention Schedule"@en ;
+    rdfs:comment "Regulations setting retention schedules and disposition rules for archives."@en ;
+    rdfs:subClassOf arsip:Kategori .
+
+arsip:SKKAAD a owl:Class ;
+    rdfs:label "Sistem Klasifikasi Keamanan dan Akses Arsip Dinamis"@id ,
+               "Dynamic Archive Security and Access Classification System"@en ;
+    rdfs:comment "Regulations governing security classification and access control of dynamic archives."@en ;
+    rdfs:subClassOf arsip:Kategori .
+
+arsip:PK a owl:Class ;
+    rdfs:label "Penyelenggaraan Kearsipan"@id , "Archival Administration"@en ;
+    rdfs:comment "General archival management regulations (residual category)."@en ;
+    rdfs:subClassOf arsip:Kategori .
+
+arsip:PA a owl:Class ;
+    rdfs:label "Perubahan / Amandemen"@id , "Amendment"@en ;
+    rdfs:comment "Regulations that partially amend prior regulations."@en ;
+    rdfs:subClassOf arsip:Kategori .
+
+arsip:PC a owl:Class ;
+    rdfs:label "Pencabutan"@id , "Revocation"@en ;
+    rdfs:comment "Regulations that fully supersede prior regulations."@en ;
+    rdfs:subClassOf arsip:Kategori ;
+    owl:disjointWith arsip:PA .
+
+# =============================================================================
+# OBJECT PROPERTIES (7 main relations + inverses)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. menerbitkan (issues / publishes)
+# -----------------------------------------------------------------------------
+arsip:menerbitkan a owl:ObjectProperty ;
+    rdfs:label "menerbitkan"@id , "issues"@en ;
+    rdfs:comment "Relates an Institution to the Regulations it has issued."@en ;
+    rdfs:domain arsip:Lembaga ;
+    rdfs:range arsip:Peraturan ;
+    owl:inverseOf arsip:diterbitkanOleh ;
+    rdfs:subPropertyOf dcterms:publisher ;
+    skos:closeMatch lkif-norm:has_legal_source .
+
+arsip:diterbitkanOleh a owl:ObjectProperty ;
+    rdfs:label "diterbitkan oleh"@id , "issued by"@en ;
+    rdfs:comment "Inverse of menerbitkan: relates a Regulation to its issuing Institution."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Lembaga ;
+    owl:inverseOf arsip:menerbitkan .
+
+# -----------------------------------------------------------------------------
+# 2. mengatur (regulates / categorized as)
+# -----------------------------------------------------------------------------
+arsip:mengatur a owl:ObjectProperty ;
+    rdfs:label "mengatur"@id , "regulates"@en ;
+    rdfs:comment """Relates a Regulation to the Category it belongs to in the
+        six-class taxonomy (KA, JRA, SKKAAD, PK, PA, PC)."""@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Kategori ;
+    rdfs:subPropertyOf dcterms:subject .
+
+# -----------------------------------------------------------------------------
+# 3. ditetapkanOleh (enacted by)
+# -----------------------------------------------------------------------------
+arsip:ditetapkanOleh a owl:ObjectProperty ;
+    rdfs:label "ditetapkan oleh"@id , "enacted by"@en ;
+    rdfs:comment "Relates a Regulation to the Official who enacted it."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Pejabat ;
+    rdfs:subPropertyOf dcterms:creator ;
+    skos:closeMatch lkif:legally_binds .
+
+# -----------------------------------------------------------------------------
+# 4. berlakuPada (effective on)
+# -----------------------------------------------------------------------------
+arsip:berlakuPada a owl:ObjectProperty ;
+    rdfs:label "berlaku pada"@id , "effective on"@en ;
+    rdfs:comment "Relates a Regulation to its effective date."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Tanggal ;
+    rdfs:subPropertyOf dcterms:date ;
+    skos:closeMatch lkif-time:starts .
+
+# -----------------------------------------------------------------------------
+# 5. dicabutOleh (revoked by)
+# -----------------------------------------------------------------------------
+arsip:dicabutOleh a owl:ObjectProperty ;
+    rdfs:label "dicabut oleh"@id , "revoked by"@en ;
+    rdfs:comment """Relates a Regulation to the Official who revoked it
+        (when status = dicabut)."""@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Pejabat .
+
+# -----------------------------------------------------------------------------
+# 6. menggantikan (supersedes - full revocation)
+# -----------------------------------------------------------------------------
+arsip:menggantikan a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "menggantikan"@id , "supersedes"@en ;
+    rdfs:comment """Relates a Regulation to another Regulation that it fully
+        supersedes. Transitive: if A supersedes B and B supersedes C, then
+        A supersedes C."""@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Peraturan ;
+    owl:inverseOf arsip:digantikanOleh ;
+    skos:closeMatch lkif-norm:supersedes .
+
+arsip:digantikanOleh a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "digantikan oleh"@id , "superseded by"@en ;
+    rdfs:comment "Inverse of menggantikan. Transitive."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Peraturan ;
+    owl:inverseOf arsip:menggantikan .
+
+# -----------------------------------------------------------------------------
+# 7. menggantikan_sebagian (partially amends)
+# -----------------------------------------------------------------------------
+arsip:menggantikan_sebagian a owl:ObjectProperty ;
+    rdfs:label "menggantikan sebagian"@id , "partially amends"@en ;
+    rdfs:comment """Relates a Regulation to another Regulation that it
+        partially amends (but does not fully supersede). NOT transitive
+        (multiple partial amendments may coexist)."""@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range arsip:Peraturan ;
+    owl:propertyDisjointWith arsip:menggantikan .
+
+# =============================================================================
+# DATA PROPERTIES (metadata fields)
+# =============================================================================
+
+arsip:nomorPeraturan a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "nomor peraturan"@id , "regulation number"@en ;
+    rdfs:comment "The official regulation number (e.g., '12/2020')."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dcterms:identifier .
+
+arsip:tahunDitetapkan a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "tahun ditetapkan"@id , "year enacted"@en ;
+    rdfs:comment "The year in which the regulation was enacted."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range xsd:gYear .
+
+arsip:tentang a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "tentang"@id , "subject title"@en ;
+    rdfs:comment "The subject/title of the regulation (free-text field)."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dcterms:title .
+
+arsip:jenisPeraturan a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "jenis peraturan"@id , "regulation type"@en ;
+    rdfs:comment "The type of regulation (e.g., PERATURAN MENTERI, PERATURAN BADAN/LEMBAGA)."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dcterms:type .
+
+arsip:urlSumber a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "URL sumber"@id , "source URL"@en ;
+    rdfs:comment "The official source URL of the regulation on peraturan.go.id."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range xsd:anyURI ;
+    rdfs:subPropertyOf dcterms:source .
+
+arsip:status a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "status"@id , "status"@en ;
+    rdfs:comment "The status of the regulation: 'aktif' (active) or 'dicabut' (revoked)."@en ;
+    rdfs:domain arsip:Peraturan ;
+    rdfs:range [
+        a rdfs:Datatype ;
+        owl:onDatatype xsd:string ;
+        owl:oneOf ("aktif" "dicabut")
+    ] .
+
+arsip:namaLembaga a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "nama lembaga"@id , "institution name"@en ;
+    rdfs:comment "The canonical name of the institution."@en ;
+    rdfs:domain arsip:Lembaga ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf foaf:name , dcterms:title .
+
+arsip:namaPejabat a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "nama pejabat"@id , "official name"@en ;
+    rdfs:comment "The full name of the government official."@en ;
+    rdfs:domain arsip:Pejabat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf foaf:name .
+
+arsip:jabatan a owl:DatatypeProperty ;
+    rdfs:label "jabatan"@id , "title / position"@en ;
+    rdfs:comment "The official position/title (e.g., 'Menteri Kesehatan')."@en ;
+    rdfs:domain arsip:Pejabat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf foaf:title .
+
+arsip:tanggalISO a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "tanggal ISO"@id , "ISO date"@en ;
+    rdfs:comment "The date in ISO 8601 format (YYYY-MM-DD)."@en ;
+    rdfs:domain arsip:Tanggal ;
+    rdfs:range xsd:date .
+
+# =============================================================================
+# DISJOINTNESS AXIOMS
+# =============================================================================
+[] a owl:AllDisjointClasses ;
+    owl:members ( arsip:KA arsip:JRA arsip:SKKAAD arsip:PK arsip:PA arsip:PC ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( arsip:Peraturan arsip:Lembaga arsip:Pejabat arsip:Tanggal arsip:Kategori ) .
+
+# =============================================================================
+# ANNOTATION: Competency questions linked
+# =============================================================================
+<https://w3id.org/arsipkg/ontology/v1> rdfs:seeAlso
+    <https://w3id.org/arsipkg/competency-questions/v1> .
+
+# End of ontology

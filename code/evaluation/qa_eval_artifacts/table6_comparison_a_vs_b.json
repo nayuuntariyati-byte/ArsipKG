@@ -1,0 +1,66 @@
+{
+  "opsi_a": {
+    "description": "Original gold answers (technical regulation IDs)",
+    "primary_metric": "BERTScore",
+    "table6": {
+      "No KG (LLM only)": {
+        "f1": 0.0313,
+        "rouge_l": 0.0664,
+        "bert_score": 0.6193
+      },
+      "Semi-manual KG": {
+        "f1": 0.0,
+        "rouge_l": 0.047,
+        "bert_score": 0.641
+      },
+      "ArsipKG-Auto Full": {
+        "f1": 0.0227,
+        "rouge_l": 0.0906,
+        "bert_score": 0.661
+      }
+    },
+    "qa_retention_bertscore_pct": 103.1
+  },
+  "opsi_b": {
+    "description": "Revised gold answers (natural language)",
+    "primary_metric": "Token F1",
+    "table6": {
+      "No KG (LLM only)": {
+        "f1": 0.0401,
+        "rouge_l": 0.0728,
+        "bert_score": 0.6228
+      },
+      "Semi-manual KG": {
+        "f1": 0.0026,
+        "rouge_l": 0.0412,
+        "bert_score": 0.6368
+      },
+      "ArsipKG-Auto Full": {
+        "f1": 0.026,
+        "rouge_l": 0.0828,
+        "bert_score": 0.6545
+      }
+    },
+    "qa_retention_f1_pct": 1000.0,
+    "qa_retention_bertscore_pct": 102.8
+  },
+  "wilcoxon_opsi_b": {
+    "auto_vs_semi": {
+      "p_value": 0.017756,
+      "significant": "True",
+      "statistic": 0.0
+    },
+    "auto_vs_nokg": {
+      "p_value": 0.258909,
+      "significant": "False",
+      "statistic": 110.5
+    },
+    "semi_vs_nokg": {
+      "p_value": 5.9e-05,
+      "significant": "True",
+      "statistic": 0.0
+    }
+  },
+  "recommendation": "Use Opsi B if F1 improves significantly; otherwise fall back to Opsi A with BERTScore as primary",
+  "timestamp": "2026-05-24T13:01:52.617504"
+}

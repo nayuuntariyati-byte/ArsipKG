@@ -1,0 +1,8 @@
+[
+  {"tentang": "Jadwal Retensi Arsip Substantif di Lingkungan Kementerian X", "jenis": "PERATURAN MENTERI", "kategori": "JRA", "alasan": "Mengandung 'Jadwal Retensi Arsip'"},
+  {"tentang": "Klasifikasi Arsip Lembaga Y", "jenis": "PERATURAN BADAN", "kategori": "KA", "alasan": "Mengandung 'Klasifikasi Arsip'"},
+  {"tentang": "Sistem Klasifikasi Keamanan dan Akses Arsip Dinamis", "jenis": "PERATURAN BADAN", "kategori": "SKKAAD", "alasan": "Frase kanonik SKKAAD"},
+  {"tentang": "Pencabutan Peraturan Menteri Nomor 12 Tahun 2018", "jenis": "PERATURAN MENTERI", "kategori": "PC", "alasan": "Frase 'Pencabutan' menunjukkan revocation penuh"},
+  {"tentang": "Perubahan atas Peraturan Menteri Nomor 5 Tahun 2019", "jenis": "PERATURAN MENTERI", "kategori": "PA", "alasan": "Frase 'Perubahan atas' menunjukkan amendment parsial"},
+  {"tentang": "Penyelenggaraan Kearsipan Nasional", "jenis": "PERATURAN PEMERINTAH", "kategori": "PK", "alasan": "Manajemen kearsipan umum"}
+]

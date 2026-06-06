@@ -1,0 +1,41 @@
+# ArsipKG — Python Dependencies
+# Tested with Python 3.10+
+
+# Core ML / NLP
+torch>=2.0.0,<3.0.0
+transformers>=4.40.0
+accelerate>=0.30.0
+bitsandbytes>=0.43.0           # 4-bit NF4 quantization (Stage 2 + 3B)
+peft>=0.10.0                   # QLoRA support
+sentencepiece>=0.2.0           # LLaMA tokenizer
+
+# Classical ML
+scikit-learn>=1.4.0            # TF-IDF + LinearSVC baseline
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0                  # Wilcoxon signed-rank test
+
+# Indonesian NLP
+# IndoBERT loaded via transformers from indobenchmark/indobert-base-p1
+
+# Knowledge Graph / RDF
+rdflib>=7.0.0                  # OWL/Turtle parsing
+neo4j>=5.20.0                  # KG population (Stage 4)
+owlready2>=0.46                # Optional: reasoner integration
+
+# Evaluation
+bert-score>=0.3.13             # BERTScore (downstream QA)
+rouge-score>=0.1.2             # ROUGE-L (downstream QA)
+nltk>=3.8.0                    # Tokenization for ROUGE
+
+# Annotation analysis
+# Cohen's kappa available in scikit-learn (sklearn.metrics.cohen_kappa_score)
+
+# Visualization (for figure regeneration)
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Utility
+tqdm>=4.66.0                   # Progress bars
+pyyaml>=6.0                    # Config files
+python-dotenv>=1.0.0           # Environment variable management

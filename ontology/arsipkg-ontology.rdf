@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Pejabat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Pejabat</rdfs:label>
+    <rdfs:label xml:lang="en">Government Official</rdfs:label>
+    <rdfs:comment xml:lang="en">A government official who enacts or revokes regulations.
+        Aligned with LKIF Natural_Person and FOAF Person.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-core.owl#Natural_Person"/>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <skos:closeMatch rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#tanggalISO">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">tanggal ISO</rdfs:label>
+    <rdfs:label xml:lang="en">ISO date</rdfs:label>
+    <rdfs:comment xml:lang="en">The date in ISO 8601 format (YYYY-MM-DD).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Tanggal"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#PC">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Pencabutan</rdfs:label>
+    <rdfs:label xml:lang="en">Revocation</rdfs:label>
+    <rdfs:comment xml:lang="en">Regulations that fully supersede prior regulations.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+    <owl:disjointWith rdf:resource="https://w3id.org/arsipkg/ontology/v1#PA"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#digantikanOleh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="id">digantikan oleh</rdfs:label>
+    <rdfs:label xml:lang="en">superseded by</rdfs:label>
+    <rdfs:comment xml:lang="en">Inverse of menggantikan. Transitive.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#menggantikan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#ditetapkanOleh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">ditetapkan oleh</rdfs:label>
+    <rdfs:label xml:lang="en">enacted by</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to the Official who enacted it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Pejabat"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/creator"/>
+    <skos:closeMatch rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-core.owl#legally_binds"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#namaPejabat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">nama pejabat</rdfs:label>
+    <rdfs:label xml:lang="en">official name</rdfs:label>
+    <rdfs:comment xml:lang="en">The full name of the government official.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Pejabat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#menerbitkan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">menerbitkan</rdfs:label>
+    <rdfs:label xml:lang="en">issues</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an Institution to the Regulations it has issued.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#diterbitkanOleh"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/publisher"/>
+    <skos:closeMatch rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#has_legal_source"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#LPNK">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Lembaga Pemerintah Non-Kementerian</rdfs:label>
+    <rdfs:label xml:lang="en">Non-Ministerial Government Agency</rdfs:label>
+    <rdfs:comment xml:lang="en">A government agency that is not a ministry (e.g., BRIN, LIPI).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#SKKAAD">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Sistem Klasifikasi Keamanan dan Akses Arsip Dinamis</rdfs:label>
+    <rdfs:label xml:lang="en">Dynamic Archive Security and Access Classification System</rdfs:label>
+    <rdfs:comment xml:lang="en">Regulations governing security classification and access control of dynamic archives.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#dicabutOleh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">dicabut oleh</rdfs:label>
+    <rdfs:label xml:lang="en">revoked by</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to the Official who revoked it
+        (when status = dicabut).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Pejabat"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dc:title xml:lang="en">ArsipOnto: An Ontology for Indonesian Regulatory Archives</dc:title>
+    <dc:title xml:lang="id">ArsipOnto: Ontologi untuk Arsip Regulasi Pemerintah Indonesia</dc:title>
+    <dc:creator>Nimas Ayu Untariyati</dc:creator>
+    <dc:creator>Kusworo Adi</dc:creator>
+    <dc:creator>Aris Puji Widodo</dc:creator>
+    <dc:creator>M. Teduh Uliniansyah</dc:creator>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-06-01</dc:date>
+    <dc:description xml:lang="en">ArsipOnto is a domain ontology for representing Indonesian
+        government regulatory archives. It models the core entities (Peraturan,
+        Lembaga, Pejabat, Tanggal, Kategori) and their relations, with explicit
+        alignment to the Legal Knowledge Interchange Format (LKIF) and
+        Dublin Core Terms. The ontology supports the ArsipKG-Auto knowledge
+        graph (1,211 individuals, 1,911 axioms) populated from the ArsipDataset
+        corpus (614 regulations spanning 1961-2025).</dc:description>
+    <dc:rights>Creative Commons Attribution 4.0 International (CC BY 4.0)</dc:rights>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <dcterms:bibliographicCitation>Untariyati, N.A., Adi, K., Widodo, A.P., Uliniansyah, M.T. (2026)
+        LLM-Driven Few-Shot Classification and Knowledge Graph Population from
+        Indonesian Government Regulatory Archives. International Journal of
+        Data Science and Analytics.</dcterms:bibliographicCitation>
+    <dcterms:source rdf:resource="https://peraturan.go.id"/>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+    <owl:versionIRI rdf:resource="https://w3id.org/arsipkg/ontology/v1.0.0"/>
+    <rdfs:comment xml:lang="en">This ontology aligns with:
+        - LKIF (Legal Knowledge Interchange Format) for legal document modeling
+        - Dublin Core Terms for metadata interoperability
+        - FOAF for agent representation
+        - SKOS for taxonomy categorization</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/"/>
+    <rdfs:seeAlso rdf:resource="http://purl.org/dc/terms/"/>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/arsipkg/competency-questions/v1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#PA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Perubahan / Amandemen</rdfs:label>
+    <rdfs:label xml:lang="en">Amendment</rdfs:label>
+    <rdfs:comment xml:lang="en">Regulations that partially amend prior regulations.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#KA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Klasifikasi Arsip</rdfs:label>
+    <rdfs:label xml:lang="en">Archival Classification</rdfs:label>
+    <rdfs:comment xml:lang="en">Regulations establishing classification schemes for archival content.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Peraturan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Peraturan</rdfs:label>
+    <rdfs:label xml:lang="en">Regulation</rdfs:label>
+    <rdfs:comment xml:lang="en">A formal government regulatory document issued by an
+        Indonesian government institution. Represents the core entity in
+        ArsipKG, aligned with LKIF Legal_Document.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Legal_Document"/>
+    <skos:exactMatch rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Legal_Document"/>
+    <dcterms:hasVersion>1.0</dcterms:hasVersion>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#menggantikan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="id">menggantikan</rdfs:label>
+    <rdfs:label xml:lang="en">supersedes</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to another Regulation that it fully
+        supersedes. Transitive: if A supersedes B and B supersedes C, then
+        A supersedes C.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#digantikanOleh"/>
+    <skos:closeMatch rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#supersedes"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b3">
+    <rdf:first>dicabut</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b16">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#jenisPeraturan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">jenis peraturan</rdfs:label>
+    <rdfs:label xml:lang="en">regulation type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type of regulation (e.g., PERATURAN MENTERI, PERATURAN BADAN/LEMBAGA).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/type"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Kategori">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Kategori</rdfs:label>
+    <rdfs:label xml:lang="en">Taxonomy Category</rdfs:label>
+    <rdfs:comment xml:lang="en">A taxonomy category in the six-class ArsipDataset
+        classification scheme. Aligned with SKOS Concept.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#tentang">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">tentang</rdfs:label>
+    <rdfs:label xml:lang="en">subject title</rdfs:label>
+    <rdfs:comment xml:lang="en">The subject/title of the regulation (free-text field).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/title"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#PeraturanAktif">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Peraturan Aktif</rdfs:label>
+    <rdfs:label xml:lang="en">Active Regulation</rdfs:label>
+    <rdfs:comment xml:lang="en">A regulation currently in force (status = aktif).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#urlSumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">URL sumber</rdfs:label>
+    <rdfs:label xml:lang="en">source URL</rdfs:label>
+    <rdfs:comment xml:lang="en">The official source URL of the regulation on peraturan.go.id.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/source"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b7">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#SKKAAD"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#namaLembaga">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">nama lembaga</rdfs:label>
+    <rdfs:label xml:lang="en">institution name</rdfs:label>
+    <rdfs:comment xml:lang="en">The canonical name of the institution.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/title"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b1">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <owl:oneOf rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#nomorPeraturan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">nomor peraturan</rdfs:label>
+    <rdfs:label xml:lang="en">regulation number</rdfs:label>
+    <rdfs:comment xml:lang="en">The official regulation number (e.g., '12/2020').</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Kementerian">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Kementerian</rdfs:label>
+    <rdfs:label xml:lang="en">Ministry</rdfs:label>
+    <rdfs:comment xml:lang="en">A government ministry (e.g., Kementerian Kesehatan).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Tanggal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Tanggal</rdfs:label>
+    <rdfs:label xml:lang="en">Date</rdfs:label>
+    <rdfs:comment xml:lang="en">A calendar date associated with regulation enactment or
+        effective period. Aligned with LKIF Time_Point.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl#Time_Point"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#tahunDitetapkan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">tahun ditetapkan</rdfs:label>
+    <rdfs:label xml:lang="en">year enacted</rdfs:label>
+    <rdfs:comment xml:lang="en">The year in which the regulation was enacted.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#JRA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Jadwal Retensi Arsip</rdfs:label>
+    <rdfs:label xml:lang="en">Archival Retention Schedule</rdfs:label>
+    <rdfs:comment xml:lang="en">Regulations setting retention schedules and disposition rules for archives.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#berlakuPada">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">berlaku pada</rdfs:label>
+    <rdfs:label xml:lang="en">effective on</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to its effective date.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Tanggal"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+    <skos:closeMatch rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl#starts"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#menggantikan_sebagian">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">menggantikan sebagian</rdfs:label>
+    <rdfs:label xml:lang="en">partially amends</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to another Regulation that it
+        partially amends (but does not fully supersede). NOT transitive
+        (multiple partial amendments may coexist).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <owl:propertyDisjointWith rdf:resource="https://w3id.org/arsipkg/ontology/v1#menggantikan"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b15">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#Tanggal"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b16"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#PeraturanDicabut">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Peraturan Dicabut</rdfs:label>
+    <rdfs:label xml:lang="en">Superseded Regulation</rdfs:label>
+    <rdfs:comment xml:lang="en">A regulation that has been fully revoked or replaced (status = dicabut).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <owl:disjointWith rdf:resource="https://w3id.org/arsipkg/ontology/v1#PeraturanAktif"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b14">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#Pejabat"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b15"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#jabatan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="id">jabatan</rdfs:label>
+    <rdfs:label xml:lang="en">title / position</rdfs:label>
+    <rdfs:comment xml:lang="en">The official position/title (e.g., 'Menteri Kesehatan').</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Pejabat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/title"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#Lembaga">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Lembaga</rdfs:label>
+    <rdfs:label xml:lang="en">Institution</rdfs:label>
+    <rdfs:comment xml:lang="en">A government institution issuing regulations. Aligned with
+        LKIF Legal_Person and FOAF Organization.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-core.owl#Legal_Person"/>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    <skos:closeMatch rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b5">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#KA"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#diterbitkanOleh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">diterbitkan oleh</rdfs:label>
+    <rdfs:label xml:lang="en">issued by</rdfs:label>
+    <rdfs:comment xml:lang="en">Inverse of menerbitkan: relates a Regulation to its issuing Institution.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#menerbitkan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#mengatur">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="id">mengatur</rdfs:label>
+    <rdfs:label xml:lang="en">regulates</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a Regulation to the Category it belongs to in the
+        six-class taxonomy (KA, JRA, SKKAAD, PK, PA, PC).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/subject"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b8">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#PK"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b9"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#ANRI">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Arsip Nasional Republik Indonesia</rdfs:label>
+    <rdfs:label xml:lang="en">National Archives of Indonesia</rdfs:label>
+    <rdfs:comment xml:lang="en">The National Archives of the Republic of Indonesia, the principal authority for archival regulations.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#LPNK"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b6">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#JRA"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label xml:lang="id">status</rdfs:label>
+    <rdfs:label xml:lang="en">status</rdfs:label>
+    <rdfs:comment xml:lang="en">The status of the regulation: 'aktif' (active) or 'dicabut' (revoked).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdfs:range rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/arsipkg/ontology/v1#PK">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="id">Penyelenggaraan Kearsipan</rdfs:label>
+    <rdfs:label xml:lang="en">Archival Administration</rdfs:label>
+    <rdfs:comment xml:lang="en">General archival management regulations (residual category).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/arsipkg/ontology/v1#Kategori"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b9">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#PA"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b10"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b13">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#Lembaga"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b14"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b12">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#Peraturan"/>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b13"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b2">
+    <rdf:first>aktif</rdf:first>
+    <rdf:rest rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nc4795cc9bc9b4d26be6ac1b15713ec75b10">
+    <rdf:first rdf:resource="https://w3id.org/arsipkg/ontology/v1#PC"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+</rdf:RDF>

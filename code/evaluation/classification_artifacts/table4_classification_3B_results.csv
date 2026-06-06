@@ -1,0 +1,5 @@
+Configuration,N_success,N_total,Success_Rate,Accuracy,Macro-P,Macro-R,Macro-F1,F1_KA,F1_JRA,F1_SKKAAD,F1_PK,F1_PA,F1_PC
+LLaMA-3.2-3B-Instruct 0-shot,62,62,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+LLaMA-3.2-3B-Instruct 3-shot,62,62,1.0,0.9516,0.9278,0.9062,0.9099,0.8,0.9655,0.9091,0.9851,0.8,1.0
+LLaMA-3.2-3B-Instruct 5-shot,62,62,1.0,0.9677,0.9389,0.9618,0.949,0.8,1.0,0.9091,0.9851,1.0,1.0
+LLaMA-3.2-3B-Instruct 10-shot,62,62,1.0,0.8387,0.4936,0.6429,0.5382,0.0,0.8889,0.9091,0.9315,0.0,0.5
