@@ -1,0 +1,7 @@
+uri:ID,code,label,:LABEL
+Kat_KA,KA,Klasifikasi Arsip,Kategori
+Kat_JRA,JRA,Jadwal Retensi Arsip,Kategori
+Kat_SKKAAD,SKKAAD,Sistem Klasifikasi Keamanan dan Akses Arsip Dinamis,Kategori
+Kat_PK,PK,Penyelenggaraan Kearsipan,Kategori
+Kat_PA,PA,Perubahan/Amendment,Kategori
+Kat_PC,PC,Pencabutan/Revocation,Kategori

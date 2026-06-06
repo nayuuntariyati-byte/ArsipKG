@@ -1,0 +1,35 @@
+{
+  "graph_name": "ArsipKG-Auto",
+  "version": "1.0.0",
+  "total_nodes": 1144,
+  "total_edges": 1908,
+  "nodes_by_type": {
+    "Kategori": 6,
+    "Peraturan": 614,
+    "Lembaga": 133,
+    "Pejabat": 42,
+    "Tanggal": 349
+  },
+  "edges_by_relation": {
+    "mengatur": 614,
+    "ditetapkanOleh": 62,
+    "berlakuPada": 575,
+    "menerbitkan": 614,
+    "menggantikan": 43
+  },
+  "edges_by_provenance": {
+    "Stage3A": 1865,
+    "Stage3B-from-status": 43
+  },
+  "connectivity": {
+    "n_components": 1,
+    "largest_component_size": 1144,
+    "is_single_connected": true
+  },
+  "density": 0.0014591707505093332,
+  "average_degree": 3.335664335664336,
+  "source_corpus": {
+    "name": "ArsipDataset",
+    "n_documents": 614
+  }
+}
