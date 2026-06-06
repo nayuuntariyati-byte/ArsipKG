@@ -196,28 +196,19 @@ fuseki-server --file=ontology/arsipkg-ontology.ttl \
 
 If you use this work in your research, please cite:
 
-```bibtex
-@article{Untariyati2026ArsipKG,
-  title={LLM-Driven Few-Shot Classification and Knowledge Graph Population
-         from Indonesian Government Regulatory Archives},
+@dataset{ArsipKG2026,
+  title={ArsipKG: Indonesian Government Regulatory Archives Knowledge Graph},
   author={Untariyati, Nimas Ayu and Adi, Kusworo and
           Widodo, Aris Puji and Uliniansyah, M. Teduh},
-  journal={International Journal of Data Science and Analytics},
-  publisher={Springer},
   year={2026},
-  doi={PAPER-DOI-PLACEHOLDER}
-}
-
-@dataset{
-  url={https://github.com/YOUR-USERNAME/ArsipKG}
+  publisher={Zenodo},
+  version={1.0.0},
+  doi={10.5281/zenodo.20569079},
+  url={https://github.com/nayuuntariyati-byte/ArsipKG}
 }
 ```
 
 For the ontology specifically, see [ontology/README.md](ontology/README.md).
-
-## 🤝 Contributing
-
-This repository accompanies a published paper. For corrections or extensions, please open an Issue or Pull Request. For substantive collaboration, contact the corresponding author.
 
 ## 📧 Contact
 
@@ -227,6 +218,3 @@ This repository accompanies a published paper. For corrections or extensions, pl
 - Email: nayuuntariyati@students.undip.ac.id | nima004@brin.go.id
 - ORCID: [0009-0001-6466-9534](https://orcid.org/0009-0001-6466-9534)
 
-## 🙏 Acknowledgments
-
-We thank the National Archives of the Republic of Indonesia (Arsip Nasional Republik Indonesia, ANRI) for providing access to and clarification on archival regulations. We are grateful to the two domain-expert annotators who participated in the inter-annotator validation study. Computational resources were provided by Google Colaboratory (Tesla T4 GPU) and BRIN computing infrastructure (NVIDIA L4 GPU).
