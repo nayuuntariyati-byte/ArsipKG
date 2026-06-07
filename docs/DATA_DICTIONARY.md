@@ -45,5 +45,4 @@ Three serialization formats (TTL, NT, Cypher) of the populated knowledge graph.
 ## ArsipOnto (ontology/)
 
 OWL 2 DL ontology with 16 classes, 9 object properties, 10 datatype properties, 286 axioms total.
-Persistent identifier: https://w3id.org/arsipkg/ontology/v1
 Full documentation: `ontology/README.md`
