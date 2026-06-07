@@ -1,0 +1,4 @@
+Component,Triples,Validated,Precision,Cohen's κ
+Stage 3A (metadata-anchored),322,321,0.994,0.812
+Stage 3B (LLM title-based),23,9,0.391,0.612
+Combined pipeline,339,321,0.947,0.748

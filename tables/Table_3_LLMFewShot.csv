@@ -1,0 +1,14 @@
+Component,Setting
+LLM model (primary),meta-llama/Llama-3.1-8B-Instruct
+LLM model (comparison),meta-llama/Llama-3.2-3B-Instruct
+Quantization,4-bit NF4 (BitsAndBytes / QLoRA)
+Temperature / top-p / seed,0.1 / 0.9 / 42
+Max new tokens,256
+Few-shot k values,"{0, 3, 5, 10}"
+Few-shot selection,Stratified random from training split
+TF-IDF features,"Unigram, max_features=1000, sublinear TF"
+LinearSVC C,10.0 (grid search optimum)
+IndoBERT epochs / batch / LR,up to 20 / 16 / 1e-5
+Early stopping patience,4 epochs on val macro-F1
+GPU,NVIDIA T4 (Colab) / NVIDIA L4 (KG stages)
+Train / Val / Test split,490 / 62 / 62 (seed=42)

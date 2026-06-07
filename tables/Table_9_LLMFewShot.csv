@@ -1,0 +1,4 @@
+Configuration,BERTScore,Token F1,ROUGE-L,QA Retention
+No KG (LLM only),0.619,0.142,0.198,—
+"Semi-manual KG (in-house, 100 docs)",0.641,0.187,0.243,100% (baseline)
+ArsipKG-Auto Full (614 docs),0.661,0.169,0.231,103.1%

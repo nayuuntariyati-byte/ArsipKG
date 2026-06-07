@@ -1,0 +1,9 @@
+Metric,Semi-manual (100 docs),ArsipKG-Auto (614 docs)
+Nodes,~650,1211
+Edges,"~2,500",1911
+Connected components,5,1
+Corpus coverage,16.3%,109%
+Avg nodes per document,6.5,1.97
+Graph density,0.0118,0.00131
+Construction time,~120 hours (manual),~11 minutes (automated)
+Cost per 1000 docs,Prohibitive,Negligible

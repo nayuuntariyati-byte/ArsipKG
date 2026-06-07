@@ -1,0 +1,8 @@
+Relation,Source,N triples,Precision,Notes
+menerbitkan,Stage 3A,609,1.0,"Pemrakarsa field, normalized"
+mengatur,Stage 3A,598,0.994,Taxonomy label — 6 mismatches due to entity normalization
+berlakuPada,Stage 3A,539,1.0,"Effective date, ISO-normalized"
+ditetapkanOleh,Stage 3A,62,1.0,Enacting official
+dicabutOleh,Stage 3A,47,1.0,Status: superseded
+menggantikan,Stage 3B,39,0.487,"Full revocation, LLM-extracted"
+menggantikan_sebagian,Stage 3B,17,0.176,"Partial amendment, LLM-extracted"

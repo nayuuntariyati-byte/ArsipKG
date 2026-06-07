@@ -1,0 +1,9 @@
+System,Method,Domain,Language,Coverage,Output
+REBEL [7],Supervised seq2seq,General,EN,Medium,Triple set
+GoLLIE [11],Guided LLM,General,EN,Medium,Triple set
+Trajanoska et al. [8],GPT-4 zero-shot,Biomedical,EN,Low,Triples
+KG-GPT [12],LLM general reasoning,General,EN,Medium,KG-augmented QA
+T2KG [14],Distant supervision + NER,General Wikipedia,EN,Medium,Triples + KG
+Haque et al. [3],LLM (CodeLlama/Mistral),"DBpedia, YAGO",EN,High,Structural quality
+Melal et al. [25],LegalT5 (T2T),Court legal cases,EN,Medium,ABSA F1
+This work,Few-shot LLM + metadata anchoring,Archival regulations,ID,High (109%),Full KG

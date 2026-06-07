@@ -1,0 +1,11 @@
+Statistic,Value
+Number of documents,614
+Time span,1961–2025 (64 years)
+Issuing institutions,133 distinct entities
+Regulation types (jenis),"12 types (PERATURAN BADAN/LEMBAGA, PERATURAN MENTERI, etc.)"
+Mean tentang length (chars),94.7
+Median tentang length (chars),78
+Active regulations (status),565 (92.0%)
+Superseded regulations,49 (8.0%)
+Documents with explicit supersession,39 menggantikan + 17 menggantikan_sebagian
+Train / Validation / Test split,"490 / 62 / 62 (80% / 10% / 10%, stratified)"
