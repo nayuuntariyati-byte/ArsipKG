@@ -14,7 +14,7 @@ This repository provides the complete experimental package for automated knowled
 
 - **ArsipDataset**: A curated corpus of 614 Indonesian government regulations on archival administration (1961–2025, from 133 institutions)
 - - **ArsipOnto**: A formal OWL 2 DL ontology (16 classes, 9 object properties, 10 datatype properties, ~375 TBox axioms) aligned with LKIF, Dublin Core Terms, SKOS, and FOAF; validated via 20 SPARQL competency questions.
-- **ArsipKG-Auto**: A populated knowledge graph with 1,211 individuals and 1,911 axioms 
+- - **ArsipKG-Auto**: A populated knowledge graph with 1,211 nodes and 1,903 edges (single connected component); 1.09× graph expansion beyond source corpus via Stage 3B supersession discovery. 
 - **ArsipQA-v1**: A benchmark of 90 question-answer pairs across 7 question types
 - - **Three Inter-Annotator Validation Datasets**:
   - Classification IAA: 26 stratified documents, two annotators, Cohen's κ = **0.9504** (almost perfect)
@@ -98,64 +98,61 @@ ArsipKG/
 │
 ├── code/
 │   ├── requirements.txt               # Python dependencies
-│   ├── baselines/                     # Supervised baselines
+│   └── baselines/                     # Supervised baselines
 │       ├── rule_based.py              # Rule-based keyword classifier
 │       ├── tfidf_svm.py               # TF-IDF + LinearSVC
 │       ├── indobert_finetune.py       # IndoBERT fine-tuning (2 variants)
 │       └── README.md
-│   
-├── results/
+│
+├── appendices/                        # Supplementary material to paper
+│   ├── Appendix_A_ArsipOnto_Specification.docx  # Ontology spec + 20 CQ summary
+│   ├── Appendix_B_Cypher_Templates.docx         # 7 template documentation
+│   └── ArsipOnto_Competency_Questions.docx      # Full 20 SPARQL queries with expected answers
+│
+├── pipeline/                      # Four-stage pipeline
+│      ├── stage1_ingestion.py        # Document ingestion + normalization
+│      ├── stage2_classification.py   # Few-shot LLM classification
+│      ├── stage3a_metadata.py        # Deterministic metadata extraction
+│      ├── stage3b_llm_titles.py      # LLM-based title extraction
+│      ├── stage4_kg_population.py    # Neo4j KG construction
+│      ├── prompts/                   # Few-shot prompt templates
+│      └── README.md
+|
+├── cypher_templates/              # Appendix B — 7 parameterized templates
+│      ├── T1_menerbitkan.cypher      # Issuing institution
+│      ├── T2_berlakuPada.cypher      # Enactment date
+│      ├── T3_mengatur.cypher         # Regulation category
+│      ├── T4_ditetapkanOleh.cypher   # Enacting official
+│      ├── T5_menggantikan.cypher     # Full supersession
+│      ├── T6_menggantikan_sebagian.cypher  # Partial amendment
+│      ├── T7_multi_hop.cypher        # Multi-hop aggregate
+│      └── qa_dispatcher.py           # Python dispatcher (question → template)
+│
+├── evaluation/                    # Evaluation scripts
+│       ├── compute_kappa.py           # Cohen's κ computation
+│       ├── evaluate_classification.py # Macro-F1 per category
+│       ├── evaluate_triples.py        # Triple extraction precision
+│       ├── evaluate_qa.py             # BERTScore, ROUGE-L, Wilcoxon
+│       └── README.md
+|
+├── results/                           # Reproducibility outputs
 │   ├── classification/                # Per-document predictions
-│   │   ├── results_detailed_0shot.csv         # 8B, 62 docs
+│   │   ├── results_detailed_0shot.csv         # LLaMA-3.1-8B, 62 docs
 │   │   ├── results_detailed_3shot.csv
 │   │   ├── results_detailed_5shot.csv
 │   │   ├── results_detailed_10shot.csv
 │   │   ├── paper_stats_summary_8B.json        # Aggregate stats 8B
 │   │   └── paper_stats_summary_3B.json        # Aggregate stats 3B
 │   │
-│   └── coverage_ablation/             # Coverage ablation outputs
+│   └── coverage_ablation/             # Coverage ablation outputs (Section 5.5)
 │       ├── qa_results_coverage_000.csv        # 0% (No-KG)
 │       ├── qa_results_coverage_025.csv        # 25%
 │       ├── qa_results_coverage_050.csv        # 50%
 │       ├── qa_results_coverage_075.csv        # 75%
 │       ├── qa_results_coverage_100.csv        # 100% (Full)
 │       ├── coverage_ablation_summary.csv      # Aggregate table
-│       ├── bertscore_recomputed.json          # Corrected metric (mBERT)
+│       ├── bertscore_recomputed.json          # BERTScore with mBERT
 │       └── statistical_tests_fixed.json       # Wilcoxon + Mann-Kendall
-│
-├── appendices/                        # Supplementary material to paper
-│   ├── Appendix_A_ArsipOnto_Specification.docx  # Ontology spec + 20 CQs
-│   ├── Appendix_B_Cypher_Templates.docx         # 7 template documentation
-│   └── ArsipOnto_Competency_Questions.docx      # Full 20 SPARQL queries
-│   ├── pipeline/                      # Four-stage pipeline
-│   │   ├── stage1_ingestion.py        # Document ingestion + normalization
-│   │   ├── stage2_classification.py   # Few-shot LLM classification
-│   │   ├── stage3a_metadata.py        # Deterministic metadata extraction
-│   │   ├── stage3b_llm_titles.py      # LLM-based title extraction
-│   │   ├── stage4_kg_population.py    # Neo4j KG construction
-│   │   ├── prompts/                   # Few-shot prompt templates
-│   │   └── README.md
-│   │
-│   ├── notebooks/                     # Google Colab notebooks (end-to-end reproduction)
-│   │   ├── 01_stage3b_extraction_colab.ipynb   # LLM supersession extraction
-│   │   ├── 02_coverage_ablation_colab.ipynb    # QA coverage ablation
-│   │   └── 03_bertscore_recompute_colab.ipynb  # Corrected BERTScore evaluation
-│   │
-│   ├── cypher_templates/              # Appendix B — 7 parameterized templates
-│   │   ├── T1_menerbitkan.cypher      # Issuing institution
-│   │   ├── T2_berlakuPada.cypher      # Enactment date
-│   │   ├── T3_mengatur.cypher         # Regulation category
-│   │   ├── T4_ditetapkanOleh.cypher   # Enacting official
-│   │   ├── T5_menggantikan.cypher     # Full supersession
-│   │   ├── T6_menggantikan_sebagian.cypher  # Partial amendment
-│   │   ├── T7_multi_hop.cypher        # Multi-hop aggregate
-│   │   └── qa_dispatcher.py           # Python dispatcher (question → template)
-│   └── evaluation/                    # Evaluation scripts
-│       ├── compute_kappa.py           # Cohen's κ computation
-│       ├── evaluate_classification.py # Macro-F1 per category
-│       ├── evaluate_triples.py        # Triple extraction precision
-│       ├── evaluate_qa.py             # BERTScore, ROUGE-L, Wilcoxon
-│       └── README.md
 │
 └── docs/
     ├── INSTALLATION.md                # Setup guide
@@ -191,7 +188,7 @@ python code/pipeline/stage2_classification.py \
     --data data/arsipdataset/splits/test.csv \
     --output results/llama8b_3shot.json
 
-# Expected: macro-F1 = 0.963
+# Expected: macro-F1 = 0.9631 (full N=62); 0.9717 on N=25 manual-consensus subset.
 ```
 ### Reproduce Coverage Ablation Study
 
@@ -227,11 +224,18 @@ python code/cypher_templates/qa_dispatcher.py \
 ### Run Inter-Annotator Validation
 
 ```bash
+# Classification IAA (26 documents, 6-class labels)
 python code/evaluation/compute_kappa.py \
-    --annotator1 data/validation/annotator1_labels.csv \
-    --annotator2 data/validation/annotator2_labels.csv
-
+    --annotator1 data/validation/classification_iaa/annotator1_labels.csv \
+    --annotator2 data/validation/classification_iaa/annotator2_labels.csv
 # Expected: Cohen's κ = 0.9504
+
+# Triple extraction gold standard (339 triples, Y/N labels)
+python code/evaluation/compute_kappa.py \
+    --annotator1 data/validation/triple_gold_standard/annotator1_gold_standard.csv \
+    --annotator2 data/validation/triple_gold_standard/annotator2_gold_standard.csv \
+    --label-col annotator1_correct
+# Expected: Cohen's κ = 0.7482
 ```
 
 ### Load Knowledge Graph (Neo4j)
@@ -240,7 +244,7 @@ python code/evaluation/compute_kappa.py \
 # Start Neo4j, then:
 cypher-shell -u neo4j -p YOUR_PASSWORD < data/arsipkg-auto/arsipkg-auto.cypher
 
-# Expected: 1,211 nodes, 1,911 edges, 1 connected component
+# Expected: 1,211 nodes, 1,903 edges, 1 connected component
 ```
 
 ### Query with SPARQL (using Apache Jena)
