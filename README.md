@@ -1,7 +1,9 @@
 # ArsipKG: Indonesian Government Regulatory Archives Knowledge Graph
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20569079.svg)](https://doi.org/10.5281/zenodo.20569079)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![OWL 2 DL](https://img.shields.io/badge/OWL-2%20DL-blueviolet.svg)](https://w3id.org/arsipkg/ontology/v1)
 
 
 Companion repository for the paper **"LLM-Driven Few-Shot Classification and Knowledge Graph Population from Indonesian Government Regulatory Archives"** (Untariyati et al., 2026, International Journal of Data Science and Analytics, Springer).
@@ -201,8 +203,20 @@ fuseki-server --file=ontology/arsipkg-ontology.ttl \
 
 If you use this work in your research, please cite:
 
-@dataset{ArsipKG2026,
-  title={ArsipKG: Indonesian Government Regulatory Archives Knowledge Graph},
+@article{Untariyati2026ArsipKG,
+  title={LLM-Driven Few-Shot Classification and Knowledge Graph Population
+         from Indonesian Government Regulatory Archives},
+  author={Untariyati, Nimas Ayu and Adi, Kusworo and
+          Widodo, Aris Puji and Uliniansyah, M. Teduh},
+  journal={International Journal of Data Science and Analytics},
+  publisher={Springer},
+  year={2026},
+  doi={10.xxxx/xxxxxx}
+}
+
+@dataset{Untariyati2026ArsipKG_Bundle,
+  title={ArsipKG: Reproducibility bundle for LLM-Driven Few-Shot Classification
+         and Knowledge Graph Population from Indonesian Government Regulatory Archives},
   author={Untariyati, Nimas Ayu and Adi, Kusworo and
           Widodo, Aris Puji and Uliniansyah, M. Teduh},
   year={2026},
