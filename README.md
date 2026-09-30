@@ -13,7 +13,7 @@ Companion repository for the paper **"LLM-Driven Few-Shot Classification and Kno
 This repository provides the complete experimental package for automated knowledge graph (KG) population from Indonesian government regulatory archives. It includes:
 
 - **ArsipDataset**: A curated corpus of 614 Indonesian government regulations on archival administration (1961–2025, from 133 institutions)
-- **ArsipOnto**: A formal OWL 2 DL ontology aligned with LKIF, Dublin Core Terms, SKOS, and FOAF
+- - **ArsipOnto**: A formal OWL 2 DL ontology (16 classes, 9 object properties, 10 datatype properties, ~375 TBox axioms) aligned with LKIF, Dublin Core Terms, SKOS, and FOAF; validated via 20 SPARQL competency questions.
 - **ArsipKG-Auto**: A populated knowledge graph with 1,211 individuals and 1,911 axioms 
 - **ArsipQA-v1**: A benchmark of 90 question-answer pairs across 7 question types
 - - **Three Inter-Annotator Validation Datasets**:
@@ -21,6 +21,10 @@ This repository provides the complete experimental package for automated knowled
   - Triple extraction gold standard: 339 triples across 99 documents, two annotators, Cohen's κ = **0.7482** (substantial)
   - QA benchmark quality validation: 100 QA pairs assessed by two annotators for factual correctness, natural language, and unambiguity
 - **Experimental Code**: Four-stage pipeline implementation including baselines and evaluation scripts
+- **Coverage Ablation Study**: Systematic 5-level sampling (0%, 25%, 50%, 75%, 100%; seed=42) evaluating KG completeness impact on downstream QA
+- **Seven Parameterized Cypher Templates** (Appendix B): Structured query interface achieving 1.000 exact-match precision on the ArsipQA-v1 benchmark
+- **3B vs 8B Robustness Analysis**: Comparative evaluation of LLaMA-3.1-8B and LLaMA-3.2-3B across k-shot configurations (k ∈ {0, 3, 5, 10})
+- **Colab Notebooks**: Google Colab notebooks for end-to-end reproduction on free-tier GPU
 
 ## 🔑 Key Results (from the paper)
 
@@ -95,11 +99,34 @@ ArsipKG/
 ├── code/
 │   ├── requirements.txt               # Python dependencies
 │   ├── baselines/                     # Supervised baselines
-│   │   ├── rule_based.py              # Rule-based keyword classifier
-│   │   ├── tfidf_svm.py               # TF-IDF + LinearSVC
-│   │   ├── indobert_finetune.py       # IndoBERT fine-tuning (2 variants)
-│   │   └── README.md
+│       ├── rule_based.py              # Rule-based keyword classifier
+│       ├── tfidf_svm.py               # TF-IDF + LinearSVC
+│       ├── indobert_finetune.py       # IndoBERT fine-tuning (2 variants)
+│       └── README.md
+│   
+├── results/
+│   ├── classification/                # Per-document predictions
+│   │   ├── results_detailed_0shot.csv         # 8B, 62 docs
+│   │   ├── results_detailed_3shot.csv
+│   │   ├── results_detailed_5shot.csv
+│   │   ├── results_detailed_10shot.csv
+│   │   ├── paper_stats_summary_8B.json        # Aggregate stats 8B
+│   │   └── paper_stats_summary_3B.json        # Aggregate stats 3B
 │   │
+│   └── coverage_ablation/             # Coverage ablation outputs
+│       ├── qa_results_coverage_000.csv        # 0% (No-KG)
+│       ├── qa_results_coverage_025.csv        # 25%
+│       ├── qa_results_coverage_050.csv        # 50%
+│       ├── qa_results_coverage_075.csv        # 75%
+│       ├── qa_results_coverage_100.csv        # 100% (Full)
+│       ├── coverage_ablation_summary.csv      # Aggregate table
+│       ├── bertscore_recomputed.json          # Corrected metric (mBERT)
+│       └── statistical_tests_fixed.json       # Wilcoxon + Mann-Kendall
+│
+├── appendices/                        # Supplementary material to paper
+│   ├── Appendix_A_ArsipOnto_Specification.docx  # Ontology spec + 20 CQs
+│   ├── Appendix_B_Cypher_Templates.docx         # 7 template documentation
+│   └── ArsipOnto_Competency_Questions.docx      # Full 20 SPARQL queries
 │   ├── pipeline/                      # Four-stage pipeline
 │   │   ├── stage1_ingestion.py        # Document ingestion + normalization
 │   │   ├── stage2_classification.py   # Few-shot LLM classification
@@ -109,6 +136,20 @@ ArsipKG/
 │   │   ├── prompts/                   # Few-shot prompt templates
 │   │   └── README.md
 │   │
+│   ├── notebooks/                     # Google Colab notebooks (end-to-end reproduction)
+│   │   ├── 01_stage3b_extraction_colab.ipynb   # LLM supersession extraction
+│   │   ├── 02_coverage_ablation_colab.ipynb    # QA coverage ablation
+│   │   └── 03_bertscore_recompute_colab.ipynb  # Corrected BERTScore evaluation
+│   │
+│   ├── cypher_templates/              # Appendix B — 7 parameterized templates
+│   │   ├── T1_menerbitkan.cypher      # Issuing institution
+│   │   ├── T2_berlakuPada.cypher      # Enactment date
+│   │   ├── T3_mengatur.cypher         # Regulation category
+│   │   ├── T4_ditetapkanOleh.cypher   # Enacting official
+│   │   ├── T5_menggantikan.cypher     # Full supersession
+│   │   ├── T6_menggantikan_sebagian.cypher  # Partial amendment
+│   │   ├── T7_multi_hop.cypher        # Multi-hop aggregate
+│   │   └── qa_dispatcher.py           # Python dispatcher (question → template)
 │   └── evaluation/                    # Evaluation scripts
 │       ├── compute_kappa.py           # Cohen's κ computation
 │       ├── evaluate_classification.py # Macro-F1 per category
@@ -151,6 +192,36 @@ python code/pipeline/stage2_classification.py \
     --output results/llama8b_3shot.json
 
 # Expected: macro-F1 = 0.963
+```
+### Reproduce Coverage Ablation Study
+
+Open `code/notebooks/02_coverage_ablation_colab.ipynb` in Google Colab, upload the required inputs (`all_triples_complete.csv` + `arsipqa_v1.jsonl`), and run all cells.
+
+```bash
+# Or via CLI (requires ArsipKG-Auto Neo4j instance)
+python code/pipeline/coverage_ablation.py \
+    --triples data/arsipkg-auto/all_triples_complete.csv \
+    --qa data/arsipqa-v1/arsipqa_v1.jsonl \
+    --seed 42 \
+    --output results/coverage_ablation/
+
+# Expected outputs (already included in results/coverage_ablation/):
+#   • BERTScore (mBERT): 0.669 (0%), 0.636 (25%), 0.628 (50%), 0.628 (75%), 0.637 (100%)
+#   • Wilcoxon 100% vs 50%: W = 1,148, p = 0.561 (not significant)
+#   • Mann-Kendall trend: S = -4, Z = -0.735, p = 0.462 (not significant)
+```
+
+### Query with Cypher Templates (Appendix B)
+
+```bash
+# Load ArsipKG-Auto into Neo4j (see previous section), then:
+python code/cypher_templates/qa_dispatcher.py \
+    --benchmark data/arsipqa-v1/arsipqa_v1.jsonl \
+    --neo4j-uri bolt://localhost:7687 \
+    --neo4j-user neo4j \
+    --neo4j-password YOUR_PASSWORD
+
+# Expected: 90/90 exact-match precision (1.000) across all 7 template types
 ```
 
 ### Run Inter-Annotator Validation
@@ -244,6 +315,6 @@ For the ontology specifically, see [ontology/README.md](ontology/README.md).
 **Nimas Ayu Untariyati** (corresponding author)
 - Doctoral Program in Information Systems, Universitas Diponegoro
 - Research Center for Data and Information Science, BRIN
-- Email: nayuuntariyati@students.undip.ac.id | nima004@brin.go.id
+- Email (primary): nayuuntariyati@students.undip.ac.id
+- Email (institutional): nayuuntariyati@brin.go.id
 - ORCID: [0009-0001-6466-9534](https://orcid.org/0009-0001-6466-9534)
-
