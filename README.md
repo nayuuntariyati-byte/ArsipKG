@@ -117,7 +117,7 @@ ArsipKG/
 │   ├── notebooks/                     # Google Colab notebooks
 │   │   ├── 01_stage3b_extraction_colab.ipynb   # LLM supersession extraction
 │   │   ├── 02_coverage_ablation_colab.ipynb    # QA coverage ablation
-│   │   └── 03_bertscore_recompute_colab.ipynb  # BERTScore recomputation
+│   └── 03_bertscore_recompute_colab.ipynb  # BERTScore recomputation
 │   │
 │   ├── cypher_templates/              # Appendix B — 7 parameterized templates
 │   │   ├── T1_menerbitkan.cypher      # Issuing institution
