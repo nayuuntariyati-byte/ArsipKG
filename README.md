@@ -19,16 +19,21 @@ This repository provides the complete experimental package for automated knowled
 
 ## 🔑 Key Results (from the paper)
 
-| Metric | Value |
-|---|---|
-| Best classification F1 (LLaMA-3.1-8B 3-shot) | **0.963** |
-| Best baseline F1 (IndoBERT class-weighted) | 0.4187 |
-| Triple extraction precision (Stage 3A) | **0.994** |
-| Inter-annotator agreement (classification) | κ = **0.9504** |
-| Inter-annotator agreement (triples) | κ = **0.748** |
-| KG nodes / edges | 1,211 / 1,911 |
-| Corpus coverage | **109%** |
-| Downstream QA retention | **103.1%** (Wilcoxon p = 0.027) |
+| Metric | Value | Notes |
+|---|---|---|
+| Best classification macro-F1 (LLaMA-3.1-8B 3-shot, N=62) | **0.9631** | Full held-out test set |
+| Fair-subset F1 (N=25 manual-consensus subset) | **0.9717** | Apples-to-apples with baselines |
+| Best baseline F1 (IndoBERT class-weighted, N=62) | 0.4187 | +0.54 ΔF1 vs LLM |
+| Triple extraction precision (Stage 3A, metadata-anchored) | **0.994** | On 100-doc gold standard |
+| Triple extraction precision (Stage 3B, LLM-based) | 0.391 | Supersession only |
+| Combined pipeline precision | 0.947 | 339 triples annotated |
+| Inter-annotator agreement (classification, 26 docs) | κ = **0.9504** | Almost perfect |
+| Inter-annotator agreement (triples, 339 rows, 100 docs) | κ = **0.7482** | Substantial |
+| KG structural | 1,211 nodes, 1,903 edges | 1 connected component |
+| Graph expansion beyond source corpus | **1.09×** | 55 external Peraturan materialized |
+| Cypher templates precision (Appendix B, ArsipQA-v1) | **1.000** | Exact match on 90/90 questions |
+| Coverage ablation trend (Mann-Kendall, 5 levels) | S = −4, p = 0.462 | Not significant |
+| Coverage ablation (Wilcoxon 100% vs 50%) | W = 1,148, p = 0.561 | Not significant |
 
 ## 📁 Repository Structure
 
