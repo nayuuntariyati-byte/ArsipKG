@@ -1,10 +1,9 @@
 # ArsipKG: Indonesian Government Regulatory Archives Knowledge Graph
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20569079.svg)](https://doi.org/10.5281/zenodo.20569079)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20569080.svg)](https://doi.org/10.5281/zenodo.20569080)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OWL 2 DL](https://img.shields.io/badge/OWL-2%20DL-blueviolet.svg)](https://w3id.org/arsipkg/ontology/v1)
-
 
 Companion repository for the paper **"LLM-Driven Few-Shot Classification and Knowledge Graph Population from Indonesian Government Regulatory Archives"** (Untariyati et al., 2026, International Journal of Data Science and Analytics, Springer).
 
@@ -117,7 +116,7 @@ ArsipKG/
 │   ├── notebooks/                     # Google Colab notebooks
 │   │   ├── 01_stage3b_extraction_colab.ipynb   # LLM supersession extraction
 │   │   ├── 02_coverage_ablation_colab.ipynb    # QA coverage ablation
-│   └── 03_bertscore_recompute_colab.ipynb  # BERTScore recomputation
+│   │   └── 03_bertscore_recompute_colab.ipynb  # BERTScore recomputation
 │   │
 │   ├── cypher_templates/              # Appendix B — 7 parameterized templates
 │   │   ├── T1_menerbitkan.cypher      # Issuing institution
@@ -135,6 +134,11 @@ ArsipKG/
 │       ├── evaluate_triples.py        # Triple extraction precision
 │       ├── evaluate_qa.py             # BERTScore, ROUGE-L, Wilcoxon
 │       └── README.md
+│
+├── appendices/                        # Supplementary material to paper
+│   ├── Appendix_A_ArsipOnto_Specification.docx  # Ontology spec + 20 CQ summary
+│   ├── Appendix_B_Cypher_Templates.docx         # 7 template documentation
+│   └── ArsipOnto_Competency_Questions.docx      # Full 20 SPARQL queries with expected answers
 │
 ├── results/                           # Reproducibility outputs
 │   ├── classification/                # Per-document predictions
@@ -191,6 +195,7 @@ python code/pipeline/stage2_classification.py \
 
 # Expected: macro-F1 = 0.9631 (full N=62); 0.9717 on N=25 manual-consensus subset.
 ```
+
 ### Reproduce Coverage Ablation Study
 
 Open `code/notebooks/02_coverage_ablation_colab.ipynb` in Google Colab, upload the required inputs (`all_triples_complete.csv` + `arsipqa_v1.jsonl`), and run all cells.
@@ -286,10 +291,10 @@ fuseki-server --file=ontology/arsipkg-ontology.ttl \
 - **Ontology**: CC BY 4.0 (consistent with W3ID persistent identifier policy)
 
 ## 📝 Citation
-```markdown
+
 If you use this work in your research, please cite:
 
-​```bibtex
+```bibtex
 @article{Untariyati2026ArsipKG,
   title={LLM-Driven Few-Shot Classification and Knowledge Graph Population
          from Indonesian Government Regulatory Archives},
@@ -309,11 +314,9 @@ If you use this work in your research, please cite:
   year={2026},
   publisher={Zenodo},
   version={1.0.0},
-  doi={10.5281/zenodo.20569079},
+  doi={10.5281/zenodo.20569080},
   url={https://github.com/nayuuntariyati-byte/ArsipKG}
 }
-​```
-```
 ```
 
 For the ontology specifically, see [ontology/README.md](ontology/README.md).
