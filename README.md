@@ -16,7 +16,10 @@ This repository provides the complete experimental package for automated knowled
 - **ArsipOnto**: A formal OWL 2 DL ontology aligned with LKIF, Dublin Core Terms, SKOS, and FOAF
 - **ArsipKG-Auto**: A populated knowledge graph with 1,211 individuals and 1,911 axioms 
 - **ArsipQA-v1**: A benchmark of 90 question-answer pairs across 7 question types
-- **Validation Dataset**: 26 stratified documents independently annotated by two domain experts (Cohen's κ = 0.9504)
+- - **Three Inter-Annotator Validation Datasets**:
+  - Classification IAA: 26 stratified documents, two annotators, Cohen's κ = **0.9504** (almost perfect)
+  - Triple extraction gold standard: 339 triples across 99 documents, two annotators, Cohen's κ = **0.7482** (substantial)
+  - QA benchmark quality validation: 100 QA pairs assessed by two annotators for factual correctness, natural language, and unambiguity
 - **Experimental Code**: Four-stage pipeline implementation including baselines and evaluation scripts
 
 ## 🔑 Key Results (from the paper)
@@ -62,12 +65,19 @@ ArsipKG/
 │   │   ├── arsipqa_v1.csv             # Same data in CSV
 │   │   └── README.md                  # Question type taxonomy
 │   │
-│   ├── validation/                    # Inter-annotator validation
-│   │   ├── blind_template.csv         # Blank annotation template
-│   │   ├── annotator1_labels.csv      # Annotator 1 labels
-│   │   ├── annotator2_labels.csv      # Annotator 2 labels
-│   │   ├── consensus_labels.csv       # Adjudicated final labels
-│   │   └── README.md                  # Annotation protocol
+│   ├── validation/                    # Three inter-annotator validation exercises
+│   │   ├── classification_iaa/        # Exercise 1: classification labels (26 docs)
+│   │   │   ├── annotator1_labels.csv  # Annotator 1 (κ vs A2 = 0.9504)
+│   │   │   ├── annotator2_labels.csv  # Annotator 2
+│   │   │   ├── consensus_labels.csv   # Adjudicated final labels
+│   │   │   └── blind_template.csv     # Blank template used
+│   │   ├── triple_gold_standard/      # Exercise 2: triple validation (339 triples)
+│   │   │   ├── annotator1_gold_standard.csv  # Annotator 1 (κ vs A2 = 0.7482)
+│   │   │   └── annotator2_gold_standard.csv  # Annotator 2
+│   │   ├── qa_benchmark_validation/   # Exercise 3: QA quality (100 QA pairs)
+│   │   │   ├── annotation_annotator1.csv     # Annotator 1
+│   │   │   └── annotation_annotator2.csv     # Annotator 2
+│   │   └── README.md                  # Annotation protocol (all 3 exercises)
 │   │
 │   └── arsipkg-auto/                  # Populated knowledge graph
 │       ├── arsipkg-auto.ttl           # Turtle serialization
